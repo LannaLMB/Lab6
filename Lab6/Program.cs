@@ -17,12 +17,36 @@ namespace Lab6
 
 
             // Declare Variables
-            string input = GetInput();
-            string[] sentence = SplitWords(input);
-            PrintTranslation(sentence);
-            string Continue;
+            while (true)
+            {
+                string input = GetInput();
+                string[] sentence = SplitWords(input);
+                PrintTranslation(sentence);
+                string Continue;
 
 
+                // Continue Loop
+                while (true)
+                {
+                    Console.WriteLine("");
+                    Console.WriteLine("Would You Like to Translate Another Word?  (y/n)");
+                    Continue = Console.ReadLine().ToUpper();
+                    Console.WriteLine("");
+
+                    if (Continue == "Y")
+                        break;
+
+                    if (Continue == "N")
+                    {
+                        Console.WriteLine("Bye!");
+                        return;
+                    }
+
+                    else
+                        Console.WriteLine("Please Enter Y or N");
+
+                }
+            }
         }
 
 
@@ -45,104 +69,41 @@ namespace Lab6
                 }
 
                 else
-                {
 
                     return input;
+            }
+        }
+
+
+        // Method For Splitting/Breaking Down Sentence Into Words
+        public static string[] SplitWords(string input)
+        {
+
+            string[] Words = input.Split(' ');
+            return Words;
+        }
+
+
+        // Method For Printing The Translation
+        public static void PrintTranslation(string[] input)
+        {
+            char[] vowels = new char[5] { 'a', 'e', 'i', 'o', 'u' };
+            for (int i = 0; i < input.Length; i++)
+            {
+                if (input[i].IndexOfAny(vowels) == 0)
+                {
+                    Console.Write(input[i] + "way ");
+                }
+
+                else
+                {
+                    string starting = input[i].Substring(0, input[i].IndexOfAny(vowels));
+                    string ending = input[i].Substring(input[i].IndexOfAny(vowels));
+                    Console.WriteLine(ending + starting + "ay ");
                 }
             }
+
+                Console.WriteLine();
+            }
         }
     }
-
-
-    public static string[] SplitWords(string input)
-    {
-
-        string[] Words = input.Split(' ');
-        return Words;
-    }
-
-
-    public static void PrintTranslation(string[] input)
-    {
-        char[] vowels = new char[5] { 'a', 'e', 'i', 'o', 'u' };
-        for (int i = 0; i < input.Length; i++)
-        {
-            if (input[i].IndexOfAny(vowels) == 0)
-            {
-                Console.Write(input[i] + "way ");
-            }
-
-            else
-            {
-                string starting = input[i].Substring(0, input[i].IndexOfAny(vowels));
-                string ending = input[i].Substring(input[i].IndexOfAny(vowels));
-                Console.WriteLine(ending + starting + "ay ");
-            }
-
-        }
-        Console.WriteLine();
-    }
-}
-
-
-                //    // Process
-                //    if (word.StartsWith("a") || word.StartsWith("e") || word.StartsWith("i") || word.StartsWith("o") || word.StartsWith("u"))
-                //{
-                //    StringBuilder sb = new StringBuilder(word);
-                //    sb.Append("way");
-                //    Console.WriteLine(sb);
-                //}
-                //else
-                //{
-                //    for (int i = 0; i >= length; i++)
-                //    {
-                //        string word = sentence.IndexOfAny(new char[] { 'a', 'e', 'i', 'o', 'u' });
-                //        if (result != -1)
-                //        {
-                //            return;
-                //        }
-
-                //    }
-                //    Console.WriteLine(sentence);
-                //}
-
-
-
-
-
-                // Method For Input
-                // public static string GetWord(string word)
-                // {
-                // Input
-                // Console.WriteLine("Please Enter a Word to Translate: ");
-                // Console.WriteLine();
-                // word = Console.ReadLine().ToLower();
-                // }
-
-
-
-
-                //// Continue Loop
-                //while (true)
-                //{
-                //    Console.WriteLine("");
-                //    Console.WriteLine("Would You Like to Translate Another Word?  (y/n)");
-                //    Continue = Console.ReadLine().ToUpper();
-                //    Console.WriteLine("");
-
-                //    if (Continue == "Y")
-                //        break;
-
-                //    if (Continue == "N")
-                //    {
-                //        Console.WriteLine("Bye!");
-                //        return;
-                //    }
-
-                //    else
-                //        Console.WriteLine("Please Enter Y or N");
-                
-            
-    //        }
-    //    }
-    //}
