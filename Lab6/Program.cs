@@ -16,48 +16,95 @@ namespace Lab6
             Console.WriteLine();
 
 
-
             // Declare Variables
-            string word = "";
+            string input = GetInput();
+            string[] sentence = SplitWords(input);
+            PrintTranslation(sentence);
             string Continue;
 
 
+        }
+
+
+        //Input Method
+        public static string GetInput()
+        {
 
             // Loop if User Chooses to Continue
             while (true)
             {
 
-
-
                 // Input
                 Console.WriteLine("Please Enter a Word to Translate: ");
                 Console.WriteLine();
-                word = Console.ReadLine().ToLower();
-                Console.WriteLine();
+                string input = Console.ReadLine().ToLower();
 
-
-
-                //String Empty or WhiteSpace
-                while (string.IsNullOrEmpty(word) || string.IsNullOrWhiteSpace(word))
+                if ((string.IsNullOrEmpty(input)) || (string.IsNullOrWhiteSpace(input)))
                 {
                     Console.WriteLine("You Must Enter a Word!");
-                    return;
                 }
 
-
-
-                // Process
-                if (word.StartsWith("a") || word.StartsWith("e") || word.StartsWith("i") || word.StartsWith("o") || word.StartsWith("u"))
-                {
-                    StringBuilder sb = new StringBuilder(word);
-                    sb.Append("way");
-                    Console.WriteLine(sb);
-                }
                 else
                 {
-                    word.LastIndexOf(word);
-                    Console.WriteLine(word);
+
+                    return input;
                 }
+            }
+        }
+    }
+
+
+    public static string[] SplitWords(string input)
+    {
+
+        string[] Words = input.Split(' ');
+        return Words;
+    }
+
+
+    public static void PrintTranslation(string[] input)
+    {
+        char[] vowels = new char[5] { 'a', 'e', 'i', 'o', 'u' };
+        for (int i = 0; i < input.Length; i++)
+        {
+            if (input[i].IndexOfAny(vowels) == 0)
+            {
+                Console.Write(input[i] + "way ");
+            }
+
+            else
+            {
+                string starting = input[i].Substring(0, input[i].IndexOfAny(vowels));
+                string ending = input[i].Substring(input[i].IndexOfAny(vowels));
+                Console.WriteLine(ending + starting + "ay ");
+            }
+
+        }
+        Console.WriteLine();
+    }
+}
+
+
+                //    // Process
+                //    if (word.StartsWith("a") || word.StartsWith("e") || word.StartsWith("i") || word.StartsWith("o") || word.StartsWith("u"))
+                //{
+                //    StringBuilder sb = new StringBuilder(word);
+                //    sb.Append("way");
+                //    Console.WriteLine(sb);
+                //}
+                //else
+                //{
+                //    for (int i = 0; i >= length; i++)
+                //    {
+                //        string word = sentence.IndexOfAny(new char[] { 'a', 'e', 'i', 'o', 'u' });
+                //        if (result != -1)
+                //        {
+                //            return;
+                //        }
+
+                //    }
+                //    Console.WriteLine(sentence);
+                //}
 
 
 
@@ -75,27 +122,27 @@ namespace Lab6
 
 
 
-                // Continue Loop
-                while (true)
-                {
-                    Console.WriteLine("");
-                    Console.WriteLine("Would You Like to Translate Another Word?  (y/n)");
-                    Continue = Console.ReadLine().ToUpper();
-                    Console.WriteLine("");
+                //// Continue Loop
+                //while (true)
+                //{
+                //    Console.WriteLine("");
+                //    Console.WriteLine("Would You Like to Translate Another Word?  (y/n)");
+                //    Continue = Console.ReadLine().ToUpper();
+                //    Console.WriteLine("");
 
-                    if (Continue == "Y")
-                        break;
+                //    if (Continue == "Y")
+                //        break;
 
-                    if (Continue == "N")
-                    {
-                        Console.WriteLine("Bye!");
-                        return;
-                    }
+                //    if (Continue == "N")
+                //    {
+                //        Console.WriteLine("Bye!");
+                //        return;
+                //    }
 
-                    else
-                        Console.WriteLine("Please Enter Y or N");
-                }
-            }
-        }
-    }
-}
+                //    else
+                //        Console.WriteLine("Please Enter Y or N");
+                
+            
+    //        }
+    //    }
+    //}
