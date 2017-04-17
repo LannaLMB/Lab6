@@ -16,20 +16,22 @@ namespace Lab6
             Console.WriteLine();
 
 
-            // Declare Variables
+            // Program Continue Loop
             while (true)
             {
+
+                // Declare Variables and Call Methods
                 string input = GetInput();
                 string[] sentence = SplitWords(input);
                 PrintTranslation(sentence);
                 string Continue;
 
 
-                // Continue Loop
+                // Yes or No - Continue Loop
                 while (true)
                 {
                     Console.WriteLine("");
-                    Console.WriteLine("Would You Like to Translate Another Word?  (y/n)");
+                    Console.WriteLine("Would You Like to Translate Another Word or Sentence?  (y/n)");
                     Continue = Console.ReadLine().ToUpper();
                     Console.WriteLine("");
 
@@ -59,10 +61,12 @@ namespace Lab6
             {
 
                 // Input
-                Console.WriteLine("Please Enter a Word to Translate: ");
+                Console.WriteLine("Please Enter a Word or Sentence to Translate: ");
                 Console.WriteLine();
                 string input = Console.ReadLine().ToLower();
+                
 
+                // Validates There is User Input
                 if ((string.IsNullOrEmpty(input)) || (string.IsNullOrWhiteSpace(input)))
                 {
                     Console.WriteLine("You Must Enter a Word!");
@@ -73,6 +77,7 @@ namespace Lab6
                     return input;
             }
         }
+
 
 
         // Method For Splitting/Breaking Down Sentence Into Words
