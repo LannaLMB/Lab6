@@ -1,7 +1,14 @@
-﻿using System;
+﻿/*  Author:  Lanna Brasure
+ *  Last Updated:  4/17/17
+ *  Program:  Lab6 - Pig Latin Translator
+ */
+
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace Lab6
@@ -22,7 +29,8 @@ namespace Lab6
 
                 // Declare Variables and Call Methods
                 string input = GetInput();
-                string[] sentence = SplitWords(input);
+                input = IsWord(input);
+                string[] sentence = SplitWords(input); 
                 PrintTranslation(sentence);
                 string Continue;
 
@@ -52,6 +60,7 @@ namespace Lab6
         }
 
 
+
         //Input Method
         public static string GetInput()
         {
@@ -64,9 +73,8 @@ namespace Lab6
                 Console.WriteLine("Please Enter a Word or Sentence to Translate: ");
                 Console.WriteLine();
                 string input = Console.ReadLine().ToLower();
-                
 
-                // Validates There is User Input
+                // Checks to See if Input is Empty or Has WhiteSpace
                 if ((string.IsNullOrEmpty(input)) || (string.IsNullOrWhiteSpace(input)))
                 {
                     Console.WriteLine("You Must Enter a Word!");
@@ -89,6 +97,7 @@ namespace Lab6
         }
 
 
+
         // Method For Printing The Translation
         public static void PrintTranslation(string[] input)
         {
@@ -108,7 +117,21 @@ namespace Lab6
                 }
             }
 
-                Console.WriteLine();
-            }
+            Console.WriteLine();
         }
+
+
+        // Method to Make Sure Input is a String
+        public static string IsWord(string input)
+        {
+            while (!Regex.IsMatch(input, @"^[A-Za-z\s]+$"))
+            {
+                Console.WriteLine("This is an integer, please enter a word:  ");
+                input = Console.ReadLine();
+            }
+            return input;
+        }
+
+
     }
+}
